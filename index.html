@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Hadist - Alpin Developer</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, black, #0a0707);
+      color: white;
+      overflow-x: hidden;
+    }
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    section {
+      min-height: 100vh; padding: 80px 20px 40px;
+      display: none; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+    }
+    section.active {
+      display: flex; animation: fade 0.5s ease-in;
+    }
+    @keyframes fade {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+  animation: pulse-glow 1s infinite alternate;
+  margin-bottom: 20px;
+}
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px white, 0 0 20px #ffffff, 0 0 30px #ffffff;
+  }
+  100% {
+    box-shadow: 0 0 30px #9af5ff, 0 0 60px #9af5ff, 0 0 90px #9af5ff;
+  }
+}
+    .masjid-logo {
+      width: 120px;
+      margin: 20px auto;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #98f5ff;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #2f855a;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1rem;
+      color: white;
+    }
+.quote-box {
+  position: relative;
+  background: #00cdc2;
+  margin: 20px auto;
+  max-width: 700px;
+  padding: 15px;
+  border-left: 5px solid #00ffcb;
+  border-radius: 8px;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.quote-box.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+.quote-copy-btn {
+  margin-top: 15px;
+  background: #67e9ff; 
+  color: black;
+  border: none;
+  font-size: 0.85rem;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  transition: background 0.3s;
+}
+.quote-copy-btn:hover {
+  background: #67e9ff; 
+}
+
+.payment-box {
+background: black; padding: 20px; border-radius: 10px;
+border: 1px solid #67e9ff; max-width: 500px; width: 100%; margin: 10px;
+}
+.copy-btn {
+background: #67e9ff; color: #000; border: none;
+padding: 5px 12px; border-radius: 6px; cursor: pointer;
+font-weight: bold; transition: 0.3s;
+margin: 10px 0;
+}
+.copy-btn\:hover {background: #67e9ff;}
+.qr {width: 150px; margin: 10px auto; border: 2px solid #67e9ff;
+padding: 5px; border-radius: 10px;}
+.btn-start {
+margin-top: 30px; background: #67e9ff; color: #000;
+padding: 10px 20px; font-size: 18px; font-weight: bold;
+border: none; border-radius: 8px; cursor: pointer;
+}
+.qris-img {
+width: 200px;
+margin-top: 20px;
+}
+.footer {
+margin-top: 50px;
+font-size: 0.9rem;
+color: white;
+}
+.profile-wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
+}
+.video-container {
+max-width: 800px;
+width: 100%;
+margin: 20px 0;
+}
+.video-container video {
+width: 100%;
+height: auto;
+border-radius: 10px;
+}
+textarea {
+margin-top: 15px;
+width: 90%;
+max-width: 500px;
+height: 100px;
+padding: 10px;
+border-radius: 10px;
+border: 1px solid #cbd5e0;
+} </style>
+
+</head>
+<body>
+
+<section class="active" id="intro">
+  <div class="profile-wrapper">
+    <img class="avatar" src="https://files.catbox.moe/vq0cr1.jpg" alt="Avatar">
+    <h1 class="gold">Website Hadist - Alpin Developer</h1>
+    <p>Siapa alpin developer? dia adalah progammer muda berumur 16 tahun yang udah mempunyai project yang lumayan keren.</p>
+  </div>
+  <button class="btn-start" onclick="showSection('quotes'); playMusic()">Masuk</button>
+</div>
+</section>
+
+<audio id="background-music" loop>
+  <source src="https://files.catbox.moe/olp6re.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<section id="quotes">
+  <div class="video-container">
+    <video autoplay loop muted>
+      <source src="https://files.catbox.moe/f3j4pn.mp4" type="video/mp4">
+    </video>
+  </div>
+  <h1>Quotes dan Hadist</h1>
+
+  <div id="hadis-list">
+  <div class="quote-box" id="q1">"Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lain." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q1')">Salin</button>
+  </div>
+  <div class="quote-box" id="q2">"Barangsiapa tidak menyayangi, maka ia tidak akan disayangi." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q2')">Salin</button>
+  </div>
+  <div class="quote-box" id="q3">"Sesungguhnya amal yang paling dicintai oleh Allah adalah yang kontinu walaupun sedikit." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q3')">Salin</button>
+  </div>
+  <div class="quote-box" id="q4">"Tidak sempurna iman seseorang hingga ia mencintai saudaranya sebagaimana ia mencintai dirinya sendiri." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q4')">Salin</button>
+  </div>
+  <div class="quote-box" id="q5">"Orang kuat bukanlah yang pandai bergulat, tapi yang mampu mengendalikan diri saat marah." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q5')">Salin</button>
+  </div>
+  <div class="quote-box" id="q6">"Senyumanmu kepada saudaramu adalah sedekah." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q6')">Salin</button>
+  </div>
+  <div class="quote-box" id="q7">"Agama itu mudah, dan tidak ada yang mempersulit agama kecuali ia akan dikalahkan olehnya." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q7')">Salin</button>
+  </div>
+  <div class="quote-box" id="q8">"Siapa yang tidak menepati janji, maka tidak termasuk dari golongan kami." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q8')">Salin</button>
+  </div>
+  <div class="quote-box" id="q9">"Sesungguhnya dunia itu manis dan hijau, dan Allah menjadikan kalian sebagai khalifah di dalamnya." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q9')">Salin</button>
+  </div>
+  <div class="quote-box" id="q10">"Kebersihan adalah sebagian dari iman." — Nabi Muhammad SAW
+    <button class="quote-copy-btn" onclick="copyThis('q10')">Salin</button>
+  </div>
+  <div class="quote-box" id="q11">"Amal tergantung niatnya." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q11')">Salin</button>
+  </div>
+  <div class="quote-box" id="q12">"Barangsiapa menipu kami, maka ia bukan dari golongan kami." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q12')">Salin</button>
+  </div>
+  <div class="quote-box" id="q13">"Agama adalah nasihat." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q13')">Salin</button>
+  </div>
+  <div class="quote-box" id="q14">"Allah tidak melihat rupa dan harta kalian, tapi melihat hati dan amal kalian." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q14')">Salin</button>
+  </div>
+  <div class="quote-box" id="q15">"Tidak boleh ada bahaya dan saling membahayakan." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q15')">Salin</button>
+  </div>
+  <div class="quote-box" id="q16">"Seorang muslim adalah saudara bagi muslim lainnya." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q16')">Salin</button>
+  </div>
+  <div class="quote-box" id="q17">"Sedekah tidak akan mengurangi harta." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q17')">Salin</button>
+  </div>
+  <div class="quote-box" id="q18">"Orang yang terbaik di antara kalian adalah yang paling baik kepada keluarganya." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q18')">Salin</button>
+  </div>
+  <div class="quote-box" id="q19">"Sabar adalah cahaya." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q19')">Salin</button>
+  </div>
+  <div class="quote-box" id="q20">"Barang siapa yang menunjukkan pada kebaikan, maka ia mendapat pahala seperti pelakunya." — HR. Bukhari
+    <button class="quote-copy-btn" onclick="copyThis('q20')">Salin</button>
+  </div>
+<div class="quote-box" id="q21">"Sesungguhnya Allah itu indah dan menyukai keindahan." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q21')">Salin</button>
+</div>
+<div class="quote-box" id="q22">"Orang yang paling dicintai Allah adalah yang paling bermanfaat bagi orang lain." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q22')">Salin</button>
+</div>
+<div class="quote-box" id="q23">"Permudahlah dan jangan persulit, berilah kabar gembira dan jangan membuat orang lari." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q23')">Salin</button>
+</div>
+<div class="quote-box" id="q24">"Tidaklah seorang hamba menutup aib saudaranya, kecuali Allah akan menutup aibnya." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q24')">Salin</button>
+</div>
+<div class="quote-box" id="q25">"Cinta dunia adalah pangkal dari segala kesalahan." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q25')">Salin</button>
+</div>
+<div class="quote-box" id="q26">"Barangsiapa diam, maka ia selamat." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q26')">Salin</button>
+</div>
+<div class="quote-box" id="q27">"Barang siapa beriman kepada Allah dan hari akhir, hendaklah ia berkata baik atau diam." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q27')">Salin</button>
+</div>
+<div class="quote-box" id="q28">"Sesungguhnya Allah tidak melihat bentuk rupa kalian, tapi hati dan amal kalian." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q28')">Salin</button>
+</div>
+<div class="quote-box" id="q29">"Orang yang menempuh jalan untuk mencari ilmu, Allah mudahkan jalannya menuju surga." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q29')">Salin</button>
+</div>
+<div class="quote-box" id="q30">"Sesungguhnya termasuk kebajikan seorang muslim adalah meninggalkan hal yang tidak bermanfaat baginya." — HR. Tirmidzi
+  <button class="quote-copy-btn" onclick="copyThis('q30')">Salin</button>
+</div>
+<div class="quote-box" id="q31">"Sesungguhnya sesudah kesulitan itu ada kemudahan." — QS. Al-Insyirah: 6
+  <button class="quote-copy-btn" onclick="copyThis('q31')">Salin</button>
+</div>
+<div class="quote-box" id="q32">"Maka sesungguhnya bersama kesulitan ada kemudahan." — QS. Al-Insyirah: 5
+  <button class="quote-copy-btn" onclick="copyThis('q32')">Salin</button>
+</div>
+<div class="quote-box" id="q33">"Dan janganlah kamu berputus asa dari rahmat Allah." — QS. Az-Zumar: 53
+  <button class="quote-copy-btn" onclick="copyThis('q33')">Salin</button>
+</div>
+<div class="quote-box" id="q34">"Sesungguhnya Allah beserta orang-orang yang sabar." — QS. Al-Baqarah: 153
+  <button class="quote-copy-btn" onclick="copyThis('q34')">Salin</button>
+</div>
+<div class="quote-box" id="q35">"Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya." — QS. Al-Baqarah: 286
+  <button class="quote-copy-btn" onclick="copyThis('q35')">Salin</button>
+</div>
+<div class="quote-box" id="q36">"Sesungguhnya Allah menyukai orang-orang yang bertawakal." — QS. Ali Imran: 159
+  <button class="quote-copy-btn" onclick="copyThis('q36')">Salin</button>
+</div>
+<div class="quote-box" id="q37">"Dan dirikanlah shalat, tunaikanlah zakat, dan ruku'lah bersama orang-orang yang ruku'." — QS. Al-Baqarah: 43
+  <button class="quote-copy-btn" onclick="copyThis('q37')">Salin</button>
+</div>
+<div class="quote-box" id="q38">"Hai orang-orang yang beriman, bertakwalah kepada Allah dengan sebenar-benar takwa." — QS. Ali Imran: 102
+  <button class="quote-copy-btn" onclick="copyThis('q38')">Salin</button>
+</div>
+<div class="quote-box" id="q39">"Ingatlah, hanya dengan mengingat Allah hati menjadi tenang." — QS. Ar-Ra'd: 28
+  <button class="quote-copy-btn" onclick="copyThis('q39')">Salin</button>
+</div>
+<div class="quote-box" id="q40">"Dan barangsiapa bertakwa kepada Allah niscaya Allah akan memberinya jalan keluar." — QS. At-Talaq: 2
+  <button class="quote-copy-btn" onclick="copyThis('q40')">Salin</button>
+</div>
+<div class="quote-box" id="q41">"Islam dibangun di atas lima perkara." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q41')">Salin</button>
+</div>
+<div class="quote-box" id="q42">"Sesungguhnya Allah tidak akan mengasihi seseorang yang tidak mengasihi sesamanya." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q42')">Salin</button>
+</div>
+<div class="quote-box" id="q43">"Sesungguhnya Allah Maha Indah dan menyukai keindahan." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q43')">Salin</button>
+</div>
+<div class="quote-box" id="q44">"Tidak akan masuk surga orang yang di dalam hatinya ada kesombongan sebesar biji sawi." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q44')">Salin</button>
+</div>
+<div class="quote-box" id="q45">"Barangsiapa yang beriman kepada Allah dan hari akhir, hendaklah ia memuliakan tamunya." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q45')">Salin</button>
+</div>
+<div class="quote-box" id="q46">"Tidak sempurna iman seseorang hingga ia mencintai saudaranya seperti mencintai dirinya sendiri." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q46')">Salin</button>
+</div>
+<div class="quote-box" id="q47">"Orang yang menunjukkan kebaikan seperti pelakunya." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q47')">Salin</button>
+</div>
+<div class="quote-box" id="q48">"Allah tidak menerima shalat tanpa bersuci." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q48')">Salin</button>
+</div>
+<div class="quote-box" id="q49">"Mencari ilmu adalah kewajiban bagi setiap muslim." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q49')">Salin</button>
+</div>
+<div class="quote-box" id="q50">"Sesungguhnya amal yang pertama kali dihisab dari seseorang pada hari kiamat adalah shalat." — HR. Muslim
+  <button class="quote-copy-btn" onclick="copyThis('q50')">Salin</button>
+</div>
+</div>
+    <button class="quote-copy-btn" onclick="showSection('paymen')">donasi kepada developer</button>
+  </div>
+</section>
+
+<section id="paymen">
+  <h2 class="gold">Payment Donasi</h2>
+    <p style="font-style: italic; margin-bottom: 15px;">"Amalan yang paling dicintai oleh Allah adalah yang dilakukan secara rutin meskipun sedikit." – HR. Bukhari</p>
+  <div class="payment-box">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p><i class="fab fa-digital-ocean gold"></i> DANA: <strong>083120589335</strong></p>
+      <button class="copy-btn" onclick="copyText('083120589335')">Salin</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p><i class="fab fa-google-pay gold"></i> GoPay: <strong>087762544501</strong></p>
+      <button class="copy-btn" onclick="copyText('087762544501')">Salin</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p><i class="fab fa-android gold"></i> OVO: <strong>087762544501</strong></p>
+      <button class="copy-btn" onclick="copyText('087762544501')">Salin</button>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <img class="qr" src="https://files.catbox.moe/nlks1z.jpg" alt="QRIS">
+      <br>
+      <a href="https://files.catbox.moe/nlks1z.jpg" download>
+        <button class="copy-btn" style="margin-top: 10px;">Download QR</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('href').substring(1);
+      showSection(target);
+    });
+  });
+
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function copyThis(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Berhasil disalin!");
+    });
+  }
+
+  function copyQuotes() {
+    const all = [];
+    for (let i = 1; i <= 20; i++) {
+      all.push(document.getElementById('q' + i).innerText);
+    }
+    const result = all.map((q, i) => `${i + 1}. ${q}`).join("\n\n");
+    document.getElementById('allQuotes').value = result;
+    navigator.clipboard.writeText(result).then(() => {
+      alert("Semua quotes berhasil disalin!");
+    });
+  }
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => alert('Disalin: ' + text));
+  }
+  function playMusic() {
+    document.getElementById("background-music").play();
+  }
+  const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".quote-box").forEach(el => observer.observe(el));
+
+  document.querySelectorAll("blockquote").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
